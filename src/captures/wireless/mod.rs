@@ -1,2 +1,2 @@
 mod wifi;
-pub use wifi::WiFiCapture;
+pub use wifi::*;
