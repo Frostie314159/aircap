@@ -2,6 +2,7 @@ use crate::{
     captures::raw_socket_capture::{AsyncRawSocketCapture, RawSocketCapture}, AirCapResult, AsyncCapture, Capture
 };
 
+/// A synchronous wifi capture.
 pub struct WiFiCapture {
     pub(crate) inner: RawSocketCapture,
 }
@@ -36,6 +37,7 @@ impl Capture for WiFiCapture {
 }
 
 #[cfg(feature = "async")]
+/// An asynchronous wifi capture.
 pub struct AsyncWiFiCapture {
     pub(crate) inner: AsyncRawSocketCapture,
 }
