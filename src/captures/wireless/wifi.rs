@@ -55,7 +55,9 @@ impl WiFiCapture {
                 channel_number.to_string().as_str(),
                 bandwidth_arg,
             ])
-            .spawn();
+            .spawn()
+            .unwrap()
+            .wait();
     }
 }
 impl Capture for WiFiCapture {
@@ -86,7 +88,7 @@ impl AsyncWiFiCapture {
     pub fn with_sync_capture(sync_capture: WiFiCapture) -> Self {
         AsyncWiFiCapture {
             inner: sync_capture.inner.to_async(),
-            interface: sync_capture.interface
+            interface: sync_capture.interface,
         }
     }
     pub const fn get_inner(&self) -> &AsyncRawSocketCapture {
@@ -119,7 +121,10 @@ impl AsyncWiFiCapture {
                 channel_number.to_string().as_str(),
                 bandwidth_arg,
             ])
-            .spawn();
+            .spawn()
+            .unwrap()
+            .wait()
+            .await;
     }
 }
 #[cfg(feature = "async")]
